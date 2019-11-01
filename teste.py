@@ -107,10 +107,11 @@ class Teste:
         coluna2 = self.converter_hexa_int(posicao_coluna2)
         valor2_matriz_galeos = self.matriz_l[linha2][coluna2]
 
-        resultado = hex(int(valor1_matriz_galeos, 0) + int(valor2_matriz_galeos, 0))
-        if int(resultado, 0) > int('0xFF', 0):
-            resultado = '0xFF'
+        resultado = int(valor1_matriz_galeos, 0) + int(valor2_matriz_galeos, 0)
+        if resultado > 255:
+            resultado =  resultado - 255
 
+        resultado = hex(resultado)[2:].zfill(2)
         posicao3 = resultado.replace('0x', '')
         posicao_linha_resultado = posicao3[0].upper()
         posicao_coluna_resultado = posicao3[1].upper()
